@@ -1,0 +1,10 @@
+<div ng-controller="PublisherAnalysisCtrl as analysis">
+	<div class="row">
+		<div class="col-md-12">
+			<h4>Analysis: {{analysis.deal.name}} <br/>Writer: {{analysis.deal.writer_name}}</h4>
+			<royalty-providers providers="analysis.providers"></royalty-providers>
+		</div>
+        </br></br>
+        <logi-analysis analysis="analysis"/>
+    </div>
+</div>

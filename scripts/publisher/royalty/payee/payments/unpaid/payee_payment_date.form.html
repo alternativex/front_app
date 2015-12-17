@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <h3 class="modal-title">Select Payment Date</h3>
+</div>
+<div class="modal-body">
+    <form novalidate role="form" name="frmPayment">
+        <div class="form-group" ng-class="{'has-error': (frmPayment.payment_date.$dirty || submitted) && frmPayment.payment_date.$invalid}">
+            <label for="payment_date">Payment date</label>
+            <input type="text" class="form-control" name="payment_date" id="payment_date" ng-model="payeePayment.payment_date" required simpledatepicker />
+            <!--<input type="date" ng-model="parent.checkOut" class="form-control" ng-click="paymentDateOpen($event)" name="payment_date" is-open="paymentDateOpened" id="payment_date" datepicker-popup="yyyy-MM-dd" required close-text="Close" />-->
+        </div>
+        <div ng-show="payeePayment.ids.length == 1" class="form-group" ng-class="{'has-error': (frmPayment.notes.$dirty || submitted) && frmPayment.notes.$invalid}">
+            <label for="notes">Notes</label>
+            <textarea class="form-control" name="notes" id="notes" placeholder="Enter notes" ng-model="payeePayment.notes" ng-required="payeePayment.ids.length == 1"></textarea>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="mark()">Mark</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

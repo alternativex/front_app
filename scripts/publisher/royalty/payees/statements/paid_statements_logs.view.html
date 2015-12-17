@@ -1,0 +1,18 @@
+<div>
+    <table ng-table="tableParams" template-pagination="pager" class="table table-hover">
+        <tr ng-repeat="payeePayment in $data">
+            <td data-title="'Statement Date'">{{payeePayment | paymentDate}}</td>
+            <td data-title="'Amount'" class="text-right">{{payeePayment.amount | currency}}</td>
+            <td data-title="'Paid Date'">{{payeePayment.payment_date}}</td>
+            <td data-title="'Status'">{{payeePayment.status}}</td>
+            <td data-title="'Marked as paid at'">{{payeePayment.marked_as_paid_at}}</td>
+        </tr>
+    </table>
+
+    <div>
+        <script type="text/ng-template" id="pager">
+            <div data-ng-include="" data-src="'scripts/common/pager.html'"></div>
+        </script>
+    </div>
+    <br style="clear: both;" />
+</div>

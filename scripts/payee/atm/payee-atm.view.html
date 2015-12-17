@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-md-12">
+        <p class="alert alert-info">
+            We are pleased to announce that Royalty Exchange is providing ATM advances and/or Sales of part or
+            all of your catalog. You have the option of getting an Advance from 2 to 10 years of your income
+            stream and simply move the scroll bar below to see how much you could qualify for.
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <p class="alert alert-info">
+            In addition, you can use the Royalty Life Time Value tool to understand how much your total catalog is
+            potentially worth. Royalty Exchange can work with you to better understand the value of your catalog or
+            your ATM options so that you can make the right choices based on your financial needs.
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <select class="form-control" ng-model="selectedDeal" ng-change="refreshRoyaltyLifeTimeValue(selectedDeal)">
+            <option ng-repeat="deal in deals" value="{{deal.id}}">
+                {{deal.name}}
+            </option>
+        </select>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <iframe width="100%" height="490" style="border: 0px;" src="{{royaltyLifeTimeValueUrl}}"></iframe>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-xs-6 text-center">
+            <iframe width="100%" height="330" src="https://www.youtube.com/embed/itNcqku5yxc" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="col-xs-6">
+            <div class="col-xs-12" style="margin-left: 0px;">
+                <h4 style="line-height: 20px">
+                    The <strong>Life Time Value</strong> is a sale price range of the complete
+                    catalog if you were to sell it.
+                    <br/>
+                    <br/>
+                    The <strong>Short Term Value</strong> allows you to see how much money
+                    (ATM Dollars) you can pull forward from your royalties. You
+                    select the time period and the amount is calculated for you.
+                    <br/>
+                    <br/>
+                    If you are interested in either selling your catalog or utilizing
+                    the ATM Dollars, just click the contact me button below.
+                </h4>
+                <br/>
+                <div ng-show="emailSent">
+                    <h4 id="adviser_message">An email was sent to an adviser and they will contact you shortly.</h4>
+                </div>
+                <div class="text-center" ng-show="!emailSent">
+                    <button ng-click="sendAdviserContactEmail()" class="btn btn-lg btn-primary" style="width: 100%; padding: 18px;">
+                        Contact me
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

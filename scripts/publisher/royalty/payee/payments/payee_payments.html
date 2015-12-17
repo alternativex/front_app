@@ -1,0 +1,31 @@
+<div>
+    <ul class="nav nav-tabs">
+        <li ui-sref-active="active">
+            <a ui-sref="publisher.royalty.payees.new">
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Back to Payees
+            </a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="publisher.royalty.payee.payments.unattached" class="danger-color">
+                <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Unattached Royalty Payments
+            </a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="publisher.royalty.payee.payments.unpaid" class="danger-color">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Unpaid Statements
+            </a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="publisher.royalty.payee.payments.paid">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Paid Statements
+            </a>
+        </li>
+        <li ui-sref-active="active" disable="true">
+            <a ui-sref="publisher.royalty.payee.payments.attached">
+                <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Attached Royalty Payments
+            </a>
+        </li>
+    </ul>
+    <br />
+    <div ui-view></div>
+</div>

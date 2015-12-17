@@ -1,0 +1,37 @@
+<div>
+    <div class="row" style="margin-bottom: 3px;" ng-show="!detachFromPayeePaymentDisabled">
+        <div class="col-md-8">
+            <a class="btn btn-primary" ng-click="detachFromPayeePayment()">
+                <span class="glyphicon glyphicon-check" aria-hidden="true"></span> Detach from Payee Statement
+            </a>
+        </div>
+    </div>
+    <br/>
+    <table ng-table="tableParams" template-pagination="pager"  class="table table-hover">
+        <tr ng-repeat="payment in $data">
+            <td  width="30" style="text-align: left">
+                <input ng-show="payment.payee_payment.status == 'unpaid'" type="checkbox" ng-model="checkboxes.payments[payment.id]" />
+            </td>
+            <td data-title="'Payment date'">{{payment.payee_payment | paymentDate}}</td>
+            <td data-title="'Payee name'">{{payment.payee_name}}</td>
+            <td data-title="'Client name'">{{payment.client_name}}</td>
+            <td data-title="'Song title'">{{payment.song_title}}</td>
+            <td data-title="'Provider'">{{payment.source_name}}</td>
+            <td data-title="'Type'">{{payment.income_type_description}}</td>
+            <td data-title="'Country'">{{payment.territory_code}}</td>
+            <td data-title="'Source'">{{payment.exploitation_source_name}}</td>
+            <td data-title="'Amount received'" class="text-right">{{payment.amount_received | currency}}</td>
+        </tr>
+    </table>
+
+    <div>
+        <script type="text/ng-template" id="pager">
+            <div data-ng-include="" data-src="'scripts/common/pager.html'"></div>
+        </script>
+        <script type="text/ng-template" id="ng-table/headers/checkbox.html">
+            <input type="checkbox" ng-model="checkboxes.checked" id="select_all" name="filter-checkbox" value="" />
+        </script>
+    </div>
+    <br style="clear: both;" />
+
+</div>

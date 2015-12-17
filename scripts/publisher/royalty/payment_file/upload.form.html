@@ -1,0 +1,83 @@
+<div class="row">
+    <div class="col-md-3" style="background-color: #F8F8F8">
+        <h4>Payment Date</h4>
+        <form novalidate role="form" name="frmUpload">
+            <div class="form-group" ng-class="{'has-error': frmUpload.year.$invalid}">
+                <label for="year">Year</label>
+                <select class="form-control" name="year" id="year" ng-model="formData.year" required>
+                    <option ng-repeat="(key, value) in years" value="{{ value }}" ng-selected="formData.year == value">{{ value }}</option>
+                </select>
+            </div>
+            <div class="form-group" ng-class="{'has-error': frmUpload.halfYear.$invalid}">
+                <label for="halfYear">Half Year</label>
+                <select ng-disabled="formData.quarter || formData.month" class="form-control" name="halfYear" id="halfYear" ng-options="halfYear as halfYear for halfYear in halfYears" ng-model="formData.halfYear">
+                    <option value="">Select half year period</option>
+                </select>
+            </div>
+            <div class="form-group" ng-class="{'has-error': frmUpload.quarter.$invalid}">
+                <label for="quarter">Quarter</label>
+                <select ng-disabled="formData.month || formData.halfYear" class="form-control" id="quarter" name="quarter" ng-options="quarter as quarter for quarter in quarters" ng-model="formData.quarter">
+                    <option value="">Select quarter period</option>
+                </select>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': frmUpload.month.$invalid}">
+                <label for="month">Month</label>
+                <select ng-disabled="formData.quarter || formData.halfYear" class="form-control" id="month" name="month" ng-options="month as month for month in months" ng-model="formData.month">
+                    <option value="">Select month period</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-9">
+        <h4>Payment Files <small ng-show="uploader.queue.length>0">selected {{ uploader.queue.length }}</small></h4>
+        <div class="form-group">
+            <label ng-disabled="frmUpload.$invalid" class="btn btn-success" for="my-file-selector">
+                <input id="my-file-selector" type="file" nv-file-select="" uploader="uploader" multiple style="display:none;"/>
+                Select Royalty Payment Files
+            </label>
+            <a href="{{downloadHeaderUrl()}}" class="btn btn-default" type="submit">Download Template</a>
+        </div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th width="50%">Name</th>
+                <th ng-show="uploader.isHTML5">Size</th>
+                <th ng-show="uploader.isHTML5">Progress</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in uploader.queue">
+                    <td><strong>{{ item.file.name }}</strong></td>
+                    <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:4 }} MB</td>
+                    <td ng-show="uploader.isHTML5">
+                        <div class="progress" style="margin-bottom: 0;">
+                            <div class="progress-bar" role="progressbar"
+                                 ng-style="{ 'width': item.progress + '%' }"></div>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                        <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                    </td>
+                    <td nowrap>
+                        <img src="images/spin.gif" style="height: 30px;" ng-show="item.isUploading">
+                        <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()"
+                                ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                            <span class="glyphicon glyphicon-upload"></span> Upload
+                        </button>
+                        <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()" ng-disabled="item.isSuccess || item.isUploading">
+                            <span class="glyphicon glyphicon-trash"></span> Remove
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button ng-disabled="!uploader.getNotUploadedItems().length" ng-click="uploader.uploadAll()" class="btn btn-success btn-s" type="button" disabled="disabled">
+            <span class="glyphicon glyphicon-upload"></span> Upload all
+        </button>
+    </div>
+</div>

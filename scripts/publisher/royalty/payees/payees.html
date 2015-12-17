@@ -1,0 +1,26 @@
+<div>
+    <ul class="nav nav-tabs">
+        <li ui-sref-active="active" ng-show="counts.new_payees > 0">
+            <a ui-sref="publisher.royalty.payees.new" class="danger-color">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> New Payees ({{counts.new_payees}})
+            </a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="publisher.royalty.payees.all">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Payees with email ({{counts.all_payees}})
+            </a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="publisher.royalty.payees.unpaid" class="danger-color">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Unpaid Statements ({{counts.unpaid_statements}})
+            </a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="publisher.royalty.payees.paid">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Paid Statements ({{counts.paid_statements}})
+            </a>
+        </li>
+    </ul>
+    <br />
+    <div ui-view></div>
+</div>

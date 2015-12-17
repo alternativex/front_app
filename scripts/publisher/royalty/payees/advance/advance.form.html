@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h3 class="modal-title">Add Advance</h3>
+</div>
+<div class="modal-body">
+    <form novalidate role="form" name="frmAdvance">
+        <div class="form-group" ng-class="{'has-error': (frmAdvance.amount.$dirty || submitted) && frmAdvance.amount.$invalid}">
+            <label for="amount">Amount</label>
+            <input type="number" class="form-control" min="1" name="amount" id="amount" placeholder="Enter amount" ng-model="advance.amount" required/>
+        </div>
+        <div class="form-group" ng-class="{'has-error': (frmAdvance.start_date.$dirty || submitted) && frmAdvance.start_date.$invalid}">
+            <label for="start_date">Start date</label>
+            <input type="text" class="form-control" name="start_date" id="start_date" ng-model="advance.start_date" required simpledatepicker />
+        </div>
+        <div class="form-group" ng-class="{'has-error': (frmAdvance.description.$dirty || submitted) && frmAdvance.description.$invalid}">
+            <label for="description">Description</label>
+            <textarea type="text" class="form-control" name="description" id="description" ng-model="advance.description" required/>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="add()">Add</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

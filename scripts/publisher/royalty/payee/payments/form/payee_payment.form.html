@@ -1,0 +1,43 @@
+<div class="modal-header">
+    <h3 class="modal-title">Create Statement</h3>
+</div>
+<div class="modal-body">
+    <form novalidate role="form" name="frmPayment">
+        <div class="form-group" ng-class="{'has-error': (frmPayment.amount.$dirty || submitted) && frmPayment.amount.$invalid}">
+            <label for="amount">Amount</label>
+            <input type="number" class="form-control" name="amount" id="amount" placeholder="Enter amount" ng-model="payment.amount" required/>
+        </div>
+        <div class="form-group" ng-class="{'has-error': (frmPayment.payment_date.$dirty || submitted) && frmPayment.payment_date.$invalid}">
+            <label for="payment_date">Statement date</label>
+            <input type="text" class="form-control" name="payment_date" id="payment_date" ng-model="payment.payment_date" required simpledatepicker />
+        </div>
+        <div class="form-group" ng-class="{'has-error': (frmPayment.notes.$dirty || submitted) && frmPayment.notes.$invalid}">
+            <label for="notes">Notes</label>
+            <textarea class="form-control" name="notes" id="notes" placeholder="Enter notes" ng-model="payment.notes" required></textarea>
+        </div>
+        <div class="form-group" ng-class="{'has-error': frmPayment.year.$invalid}">
+            <label for="year">Year</label>
+            <select class="form-control" name="year" id="year" ng-model="payment.year" required>
+                <option ng-repeat="(key, value) in years" value="{{ value }}" ng-selected="payment.year == value">{{ value }}</option>
+            </select>
+        </div>
+        <div class="form-group" ng-class="{'has-error': frmPayment.quarter.$invalid}">
+            <label for="quarter">Quarter</label>
+            <select ng-disabled="payment.month" class="form-control" name="quarter" id="quarter" ng-model="payment.quarter"
+                    ng-required="!payment.month">
+                <option ng-repeat="(key, value) in quarters" value="{{ value }}" ng-selected="payment.quarter == value">{{ value }}</option>
+            </select>
+        </div>
+        <div class="form-group" ng-class="{'has-error': frmPayment.month.$invalid}">
+            <label for="month">Month</label>
+            <select ng-disabled="payment.quarter" class="form-control" name="month" id="month" ng-model="payment.month"
+                    ng-required="!payment.quarter">
+                <option ng-repeat="(key, value) in months" value="{{ value }}" ng-selected="payment.month == value">{{ value }}</option>
+            </select>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="create()">Create</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

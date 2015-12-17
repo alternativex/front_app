@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-12">
+        <div ng-show="tableParamsAdvances.data.length>0">
+            <h4>Advances</h4>
+            <p>Advance amount <strong>{{tableParamsAdvances.data[0].amount | currency}}</strong>. Left to pay <strong>{{tableParamsAdvances.data[0].amount_left_to_pay | currency}}</strong></p>
+            <table ng-table="tableParamsAdvances" template-pagination="pager-advances"  class="table table-hover">
+                <tr ng-repeat="advance in $data" ng-class="{success: advance.status == 'complete', danger: advance.status == 'incomplete'}">
+                    <td data-title="'Start date'" style="width: 150px" class="text-center">{{advance.start_date}}</td>
+                    <td data-title="'Description'" style="width: 150px" class="text-center">{{advance.description}}</td>
+                    <td data-title="'Amount'" header-class="text-right" class="text-right">{{advance.amount | currency}}</td>
+                    <td data-title="'Paid'" header-class="text-right" class="text-right">{{advance.advance_payments_sum | currency}}</td>
+                    <td data-title="'Left to pay'" header-class="text-right" class="text-right">{{advance.amount_left_to_pay | currency}}</td>
+                    <td data-title="'Status'" style="width: 10px" class="text-center">{{advanceStatus(advance)}}</td>
+                    <td style="width: 10px">
+                        <a title="view advance" ui-sref="payee.advance({advanceId : advance.id})">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <h4>Statements</h4>
+            <p>Total royalties paid to date: <strong>{{totals.paid_payments_amount | currency}}</strong>. Last payment <strong>{{tableParamsStatements.data[0].amount | currency}}</strong></p>
+            <table ng-table="tableParamsStatements" template-pagination="pager-statements"  class="table table-hover">
+                <tr ng-repeat="payeePayment in $data" ng-class="{success: payeePayment.status == 'paid', danger: payeePayment.status == 'unpaid'}">
+                    <td data-title="'Statement Date'" style="width: 150px" class="text-center">{{payeePayment | paymentDate}}</td>
+                    <td data-title="'Payment Amount'" style="width: 140px" header-class="text-right" class="text-right">{{payeePayment.amount | currency}}</td>
+                    <td data-title="'Amount Paid'" style="width: 140px" header-class="text-right" class="text-right">{{payeePayment.amount_paid | currency}}</td>
+                    <td data-title="'Company'" class="text-center" nowrap="nowrap">{{payeePayment.company_name}}</td>
+                    <td data-title="'Notes'">{{payeePayment.notes}}</td>
+                    <td data-title="'Paid Date'" class="text-center">{{payeePayment.marked_as_paid_at}}</td>
+                    <td data-title="'Status'" style="width: 10px" class="text-center">{{payeePayment.status}}</td>
+                    <td style="width: 10px">
+                        <a title="view payments" ui-sref="payee.statementPayments({payeePaymentId : payeePayment.id})">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+            <div>
+                <script type="text/ng-template" id="pager-statements">
+                    <div data-ng-include="" data-src="'scripts/common/pager.html'"></div>
+                </script>
+            </div>
+        </div>
+    </div>
+    <br style="clear: both;" />
+</div>
+

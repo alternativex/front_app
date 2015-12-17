@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-md-4">
+        <form novalidate role="form" ng-submit="createOrUpdate()" name="frmUser">
+            <div class="form-group" ng-show="user.type != 'payee'">
+                <label for="userName">Company</label>
+                <select class="form-control" name="company" id="company" ng-model="user.company_id" required
+                        ng-options="company.id as company.name for company in companies"></select>
+            </div>
+            <div class="form-group" ng-class="{'has-error': (frmUser.userName.$dirty || submitted) && frmUser.userName.$invalid}">
+                <label for="userName">User Name</label>
+                <input type="text" class="form-control" name="userName" id="userName" placeholder="Enter name"
+                       ng-model="user.name" required/>
+            </div>
+            <div class="form-group" ng-class="{'has-error': (frmUser.userEmail.$dirty || submitted) && frmUser.userEmail.$invalid}">
+                <label for="userEmail">User Email</label>
+                <input type="email" class="form-control" name="userEmail" id="userEmail" placeholder="Enter email"
+                       ng-model="user.email" required/>
+            </div>
+            <div class="form-group" ng-show="user.type != 'payee'">
+                <label for="userType">User type</label>
+                <select class="form-control" ng-model="user.type" id="userType"
+                        ng-options="type as type for type in userTypes track by type"></select>
+            </div>
+            <div class="form-group" ng-class="{'has-error': (frmUser.userPassword.$dirty || submitted) && frmUser.userPassword.$invalid}">
+                <label for="userPassword">User Password</label>
+                <input type="password" class="form-control" name="userPassword" id="userPassword"
+                       placeholder="Enter password" ng-model="user.password" ng-required="{{isNew()}}"/>
+            </div>
+            <div class="form-group" ng-class="{'has-error': (frmUser.userRePassword.$dirty || submitted) && frmUser.userRePassword.$invalid}">
+                <label for="userRePassword">User RePassword</label>
+                <input type="password" class="form-control" name="userRePassword" id="userRePassword"
+                       placeholder="Retype Password" ng-model="rePassword" ng-required="{{isNew()}}"
+                       compare-to="user.password"/>
+            </div>
+            <button type="submit" class="btn btn-default pull-right" ng-show={{isNew()}}>Create</button>
+            <button type="submit" class="btn btn-default pull-right" ng-show={{!isNew()}}>Update</button>
+        </form>
+    </div>
+</div>
+

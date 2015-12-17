@@ -1,0 +1,66 @@
+<div>
+    <div class="row" style="margin-bottom: 3px;">
+        <div class="col-md-8">
+            <a class="btn btn-primary" ng-click="openMarkAsPaidForm(false)" ng-disabled="markSelectedAsPaidDisabled">
+                <span class="glyphicon glyphicon-check" aria-hidden="true"></span> Mark Selected as Paid
+            </a>
+            <a class="btn btn-primary" ng-click="openMarkAsPaidForm(true)" ng-disabled="payee_payments.length == 0">
+                <span class="glyphicon glyphicon-check" aria-hidden="true"></span> Mark All as Paid
+            </a>
+            <a class="btn btn-primary" target="_blank" ng-href="{{downloadUnpaidStatementsUrl}}">
+                <span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span> Download unpaid statements
+            </a>
+            <label class="btn btn-primary" for="my-file-selector" style="margin-right: 5px;">
+                <input id="my-file-selector" type="file" nv-file-select="" uploader="uploader" style="display:none;"/>
+                <span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span> Batch update
+            </label>
+        </div>
+        <div class="col-md-4">
+            <form ng-submit="search()">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-8">
+                    <div class="input-group add-on">
+                        <input type="text" class="form-control" name="search" id="search" ng-model="searchFor"/>
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <table ng-table="tableParams" template-pagination="pager" class="table table-bordered table-hover">
+        <tr ng-repeat="payeePayment in $data">
+            <td width="30" style="text-align: left" header="'ng-table/headers/checkbox.html'">
+                <input type="checkbox" ng-model="checkboxes.payee_payments[payeePayment.id]" />
+            </td>
+            <td data-title="'Statement date'">{{payeePayment | paymentDate}}</td>
+            <td data-title="'Amount'" class="text-right">{{payeePayment.amount | currency}}</td>
+            <td data-title="'Payee name'">{{payeePayment.payee.name}}</td>
+            <td data-title="'Client name'">{{payeePayment.client.name}}</td>
+            <td data-title="'Notes'">{{payeePayment.notes}}</td>
+            <td data-title="'Payment type'">{{payeePayment.payment_type}}</td>
+            <td data-title="'Check number'">{{payeePayment.check_number}}</td>
+            <td data-title="'Payment details'">{{payeePayment.payment_details}}</td>
+            <td data-title="'Maestro vendor code'">{{payeePayment.maestro_vendor_code}}</td>
+            <td data-title="'Amount'" class="text-right">{{payeePayment.amount | currency}}</td>
+            <td>
+                <a title="view payments" ui-sref="publisher.royalty.payee.payments.attached({payeePaymentId: payeePayment.id, payeeCode: payeePayment.payee_code})">
+                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                </a>&nbsp;
+            </td>
+        </tr>
+    </table>
+
+    <div>
+        <script type="text/ng-template" id="pager">
+            <div data-ng-include="" data-src="'scripts/common/pager.html'"></div>
+        </script>
+        <script type="text/ng-template" id="ng-table/headers/checkbox.html">
+            <input type="checkbox" ng-model="checkboxes.checked" id="select_all" name="filter-checkbox" value="" />
+        </script>
+    </div>
+    <br style="clear: both;" />
+</div>

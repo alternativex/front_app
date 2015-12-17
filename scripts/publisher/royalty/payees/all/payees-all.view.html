@@ -1,0 +1,18 @@
+<div>
+    <div class="row">
+        <div class="col-md-8">
+        </div>
+        <form ng-submit="search()">
+            <div class="col-md-4">
+                <div class="input-group add-on">
+                    <input type="text" class="form-control" name="search" id="search" ng-model="searchFor"/>
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br />
+    <payee-table table-params="tableParamsWithEmail" update-email="false" add-advance="addAdvance(payeeCode)" redirect-to-url="'publisher.royalty.payees.all'"></payee-table>
+</div>

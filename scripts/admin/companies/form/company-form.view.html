@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-md-4">
+        <form novalidate role="form" ng-submit="createOrUpdate()" name="form">
+
+            <div class="form-group" ng-class="{'has-error': (form.companyName.$dirty || submitted) && form.companyName.$invalid}">
+                <label for="companyName">Company Name</label>
+                <input type="text" class="form-control" name="companyName" id="companyName"
+                       placeholder="Enter company name" ng-model="company.name" required/>
+            </div>
+
+            <button type="submit" class="btn btn-default pull-right" ng-show={{isNew()}}>Create</button>
+            <button type="submit" class="btn btn-default pull-right" ng-show={{!isNew()}}>Update</button>
+        </form>
+    </div>
+</div>
+

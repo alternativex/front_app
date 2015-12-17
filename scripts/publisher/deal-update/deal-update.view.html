@@ -1,0 +1,32 @@
+<div class="row">
+	<div class="col-md-4 col-md-offset-4">
+	<form novalidate role="form" name="frmDeal">
+		 <div class="form-group" ng-class="{'has-error': (frmDeal.dealName.$dirty || submitted) && frmDeal.dealName.$invalid}">
+				<label for="dealName">Analysis Name</label>
+				<input type="text" class="form-control" name="dealName" id="dealName" placeholder="Enter name" ng-model="deal.name" required/>
+		</div>
+		 <div class="form-group" ng-class="{'has-error': (frmDeal.dealWriterName.$dirty || submitted) && frmDeal.dealWriterName.$invalid}">
+				<label for="dealWriterName">Writer Name</label>
+				<input type="text" class="form-control" name="dealWriterName" id="dealWriterName" placeholder="Enter writer name" ng-model="deal.writer_name" required/>
+		</div>
+		<div class="form-group" ng-class="{'has-error': (frmDeal.dealWriterEmail.$dirty || submitted) && frmDeal.dealWriterEmail.$invalid}">
+				<label for="dealWriterName">Writer Email</label>
+				<input type="email" class="form-control" name="dealWriterEmail" id="dealWriterEmail" placeholder="Enter writer email" ng-model="deal.writer_email" required/>
+		</div>
+		<div class="form-group" ng-class="{'has-error': (frmDeal.dealWriterPhone.$dirty || submitted) && frmDeal.dealWriterPhone.$invalid}">
+				<label for="dealWriterName">Writer Phone</label>
+				<input type="text" class="form-control" name="dealWriterPhone" id="dealWriterPhone" placeholder="Enter writer phone" ng-model="deal.writer_phone" required/>
+		</div>
+		<div class="form-group">
+				<label for="dealWriterName">Deal Status</label>			
+ 				<select class="form-control" 
+ 				ng-model="deal.status" ng-options="status as status for status in dealStatus track by status"></select>
+		</div>
+		<div class="form-group">
+				<label for="dealWriterName">Percentage</label>
+ 				<select class="form-control" ng-model="deal.percentage" ng-options="percentage for percentage in [] | range:1:100"></select>
+		</div>
+		<button type="submit" class="btn btn-default pull-right" ng-click="update()">Update</button>
+	</form>
+</div>
+
