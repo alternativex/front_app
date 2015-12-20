@@ -20,6 +20,7 @@ angular.module('crm.api',['crm.configuration'])
         deals: function(restUrlParams) {
             return $http.get(SERVER_BASE + 'api/deal?_with=company&'+restUrlParams, {withCredentials:true}).then(function(response){return response.data});
         },
+        // sean peace
         payeeDeals: function(payeeCode) {
             return $http.get(SERVER_BASE + 'api/deal?_filter[]=payee_code:'+payeeCode, {withCredentials:true}).then(function(response){return response.data});
         },
